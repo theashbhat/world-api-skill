@@ -19,6 +19,13 @@ NC='\033[0m' # No Color
 LIMIT=10
 RADIUS=""
 HOURS=""
+LAT=""
+LON=""
+CITY=""
+COUNTRY=""
+STATE=""
+CATEGORY=""
+SEARCH_TERM=""  # Using SEARCH_TERM instead of TERM (TERM is a shell reserved var)
 
 # Parse arguments
 while [[ $# -gt 0 ]]; do
@@ -52,7 +59,7 @@ while [[ $# -gt 0 ]]; do
             shift 2
             ;;
         --term)
-            TERM="$2"
+            SEARCH_TERM="$2"
             shift 2
             ;;
         --hours)
@@ -131,7 +138,7 @@ add_param "state" "$(echo "$STATE" | sed 's/ /%20/g')"
 
 # Add filter params
 add_param "category" "$CATEGORY"
-add_param "term" "$(echo "$TERM" | sed 's/ /%20/g')"
+add_param "term" "$(echo "$SEARCH_TERM" | sed 's/ /%20/g')"
 add_param "limit" "$LIMIT"
 
 # Calculate time range if hours specified
