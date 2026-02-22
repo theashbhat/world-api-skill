@@ -186,3 +186,72 @@ Or manually:
 echo "your-api-key" > ~/.config/world-api/api_key
 chmod 600 ~/.config/world-api/api_key
 ```
+
+---
+
+## Proactive News Updates
+
+Once installed with an API key, the skill can send you personalized news updates 3x daily based on your interests.
+
+### Setup
+
+Add to your `HEARTBEAT.md`:
+
+```markdown
+## World API News Check
+If it's around 8am, 1pm, or 6pm (user's timezone), check for news updates:
+1. Read ~/clawd/skills/world-api/config/interests.json for tracked topics
+2. Query World API for each interest (locations, topics, terms)
+3. If new stories found, send a brief digest
+```
+
+### Tracking Interests
+
+The skill automatically tracks what you ask about. Interests are stored in:
+`~/.config/world-api/interests.json`
+
+```json
+{
+  "locations": ["San Francisco", "Washington"],
+  "topics": ["tech", "politics"],
+  "terms": ["AI", "tariffs"],
+  "last_check": "2026-02-22T08:00:00Z"
+}
+```
+
+### Manual Interest Management
+
+```bash
+# Add a location to track
+./scripts/interests.sh add-location "San Francisco"
+
+# Add a topic
+./scripts/interests.sh add-topic "health"
+
+# Add a search term
+./scripts/interests.sh add-term "climate"
+
+# List all interests
+./scripts/interests.sh list
+
+# Clear all
+./scripts/interests.sh clear
+```
+
+### Digest Format
+
+When new stories match your interests, you'll get:
+
+```
+📰 World API News Digest (8am)
+
+🌍 San Francisco (2 new):
+• Tech startup raises $50M for AI safety
+• BART delays due to maintenance
+
+🏛️ Politics (3 new):
+• Senate passes infrastructure bill
+• ...
+
+Based on your interests. Manage with: world-api interests
+```
