@@ -12,19 +12,30 @@ Query real-time world news by location, topic, or region via the World API.
 
 ## Installation
 
-1. Clone this repository:
+### OpenClaw / Claude Code
+
+```bash
+# Install from GitHub
+clawhub install github:theashbhat/world-api-skill
+```
+
+Or add to your skills directory:
+```bash
+cd ~/clawd/skills  # or your workspace skills folder
+git clone https://github.com/theashbhat/world-api-skill.git world-api
+```
+
+Then run setup:
+```bash
+./world-api/scripts/setup.sh
+```
+
+### Manual Installation
+
 ```bash
 git clone https://github.com/theashbhat/world-api-skill.git
 cd world-api-skill
-```
-
-2. Run setup to configure your API key:
-```bash
 ./scripts/setup.sh
-```
-
-3. Make scripts executable (if needed):
-```bash
 chmod +x scripts/*.sh
 ```
 
@@ -49,24 +60,23 @@ chmod +x scripts/*.sh
 
 ## Usage
 
-See [SKILL.md](SKILL.md) for complete documentation including:
-- All available query parameters
-- Example queries for common use cases
-- API response format
-- Configuration options
+Once installed, just ask:
+- "What's happening in San Francisco?"
+- "Tech news today"
+- "News near me"
+- "What happened in Washington DC?"
+
+See [SKILL.md](SKILL.md) for complete documentation.
 
 ## API
 
-This skill uses the World API:
 - **Endpoint:** `https://api.worldapi.com/reports`
 - **Auth:** Bearer token
-- **Docs:** See [SKILL.md](SKILL.md) for parameter reference
+- **Get a key:** [worldapi.com](https://worldapi.com) (coming soon)
 
 ## Configuration
 
 API key location: `~/.config/world-api/api_key`
-
-To update your key, run `./scripts/setup.sh` or manually update the file.
 
 ## License
 
